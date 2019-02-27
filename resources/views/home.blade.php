@@ -7,9 +7,9 @@
         <div class="column is-one-quarter box-profil">
             <div class="contain">
                 <div class="level-left">
-                    <a class="img-profil" href="/profil/{{ Auth::user()->username }}">
 
-                    </a>
+                    <img  class="img-profil" src="/storage/avatars/{{ Auth::user()->avatar }}" alt="">
+
                     <div class="media-content">
                         <div class="content">
                             <p>
@@ -31,13 +31,13 @@
                     <div class="level-item">
                         <div>
                             <p class="item-title">Abonnements</p>
-                            <p class="item-value">123</p>
+                            <p class="item-value">{{$followings->count()}}</p>
                         </div>
                     </div>
                     <div class="level-item">
                         <div>
                             <p class="item-title">Abonnées</p>
-                            <p class="item-value">12</p>
+                            <p class="item-value">{{$followers->count()}}</p>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
 
                     <div class="field level-left align-items-start">
                         <div class="media-left">
-                            <a class="img-profil"></a>
+                            <img class="img-profil" src="/storage/avatars/{{ Auth::user()->avatar }}">
                         </div>
                         <div class="media-content">
                             <div class="control">
@@ -67,13 +67,18 @@
             </section>
 
             <section>
-                @foreach($tweets as $tweet)
+
+
+                @foreach($followTweets as $tweet)
+
 
                     <div class="tweet box">
 
                         <article class="media">
                             <div class="media-left">
-                                <a href="/profil/{{$tweet->user->username}}" class="img-profil"></a>
+                                <a href="/profil/{{$tweet->user->username}}">
+                                    <img src="/storage/avatars/{{ $tweet->user->avatar }}" class="img-profil" alt="">
+                                </a>
                             </div>
                             <div class="media-content">
                                 <div class="content">

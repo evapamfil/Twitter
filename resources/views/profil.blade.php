@@ -82,7 +82,7 @@
                     <div class="tweet box">
                         <article class="media">
                             <div class="media-left">
-                                <a href="" class="img-profil"></a>
+                                <img src="/storage/avatars/{{ $user->avatar }}" class="img-profil">
                             </div>
                             <div class="media-content">
                                 <div class="content">

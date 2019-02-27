@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Tweet;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TwitterController extends Controller
 {
@@ -19,10 +20,21 @@ class TwitterController extends Controller
         return redirect('/');
     }
 
-    public function get(Tweet $tweet) {
+    public function get(Tweet $tweet, User $user) {
         $tweets = $tweet->all()->reverse();
 
-        return view ('home', compact('tweets'));
+        $user = Auth::user();
+
+        $followers = $user->followers;
+        $followings = $user->followings;
+
+        $tweets = $tweet->whereIn(
+            'user_id', $followings->pluck('id')->push($user->id)
+        )->with('user');
+
+        $followTweets = $tweets->get();
+
+        return view ('home', compact('tweets', 'followers', 'followings', 'followTweets'));
     }
 
 }
