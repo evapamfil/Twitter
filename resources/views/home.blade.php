@@ -69,17 +69,20 @@
             <section>
 
 
-                @foreach($followTweets as $tweet)
+                @foreach($followTweets->reverse() as $tweet)
 
 
                     <div class="tweet box">
-
+                        @if($tweet->user_id == Auth::user()->id)
+                            <a style="float: right;" class="delete" href="/tweet/delete/{{ $tweet->id }}"></a>
+                            @endif
                         <article class="media">
                             <div class="media-left">
                                 <a href="/profil/{{$tweet->user->username}}">
                                     <img src="/storage/avatars/{{ $tweet->user->avatar }}" class="img-profil" alt="">
                                 </a>
                             </div>
+
                             <div class="media-content">
                                 <div class="content">
                                     <p>
@@ -90,6 +93,7 @@
                                         {{ $tweet->content }}
                                     </p>
                                 </div>
+
                                 <nav class="level is-mobile">
                                     <div class="level-left">
                                         <a class="level-item" aria-label="reply">

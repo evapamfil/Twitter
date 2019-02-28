@@ -37,7 +37,8 @@ Route::group(['middleware' => ['web', 'auth']] ,function(){
     Route::post('/unfollow/{profileId}', 'ProfilController@unFollowUser');
     Route::get('/profil/{username}', 'ProfilController@profil')->name('profil');
     Route::get('/edit/profil', 'ProfilController@edit');
-    Route::put('/profil/{id}/update', 'ProfilController@updateProfil')->name('updateProfilphp');
+    Route::put('/profil/{id}/update', 'ProfilController@updateProfil');
+    Route::get('/tweet/delete/{id}', 'TwitterController@deleteTweet');
 });
 
 

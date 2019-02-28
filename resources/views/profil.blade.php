@@ -80,6 +80,9 @@
             <section>
                 @foreach($tweets as $tweet)
                     <div class="tweet box">
+                        @if($tweet->user_id == Auth::user()->id)
+                            <a style="float: right;" class="delete" href="/tweet/delete/{{ $tweet->id }}"></a>
+                        @endif
                         <article class="media">
                             <div class="media-left">
                                 <img src="/storage/avatars/{{ $user->avatar }}" class="img-profil">

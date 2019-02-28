@@ -37,4 +37,9 @@ class TwitterController extends Controller
         return view ('home', compact('tweets', 'followers', 'followings', 'followTweets'));
     }
 
+    public function deleteTweet(Tweet $tweet, $id){
+        $tweet->find($id)->delete();
+        return redirect('/');
+    }
+
 }
